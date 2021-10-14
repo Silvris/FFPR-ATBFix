@@ -1,5 +1,6 @@
 ﻿using HarmonyLib;
 using Last.Battle;
+using Last.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,14 +10,14 @@ using UnityEngine;
 
 namespace FFPR_ATBFix
 {
-    //[HarmonyPatch(typeof(ViewDamageEntity), nameof(ViewDamageEntity.CreateDamageValue))]
-    public sealed class ViewDamageEntity_CreateDamageValue : Il2CppSystem.Object
+    [HarmonyPatch(typeof(DamageViewUIManager), nameof(DamageViewUIManager.CreateDamgeView))]
+    public sealed class DamageViewUIManager_CreateDamgeView : Il2CppSystem.Object
     {
-        public ViewDamageEntity_CreateDamageValue(IntPtr ptr) : base(ptr)
+        public DamageViewUIManager_CreateDamgeView(IntPtr ptr) : base(ptr)
         {
 
         }
-        public static void Postfix(ViewDamageEntity __instance)
+        public static void Postfix(int damage, bool isRecovery, bool isMiss, Transform transform, DamageViewUIManager __instance)
         {
             //ModComponent.Log.LogInfo(isMiss);
             List<GameObject> go = FunctionUtil.GetAllChildren(__instance.gameObject);

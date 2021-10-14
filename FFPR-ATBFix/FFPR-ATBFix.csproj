@@ -130,6 +130,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cursor_SetScale.cs" />
+    <Compile Include="DamageViewUIManager_CreateDamgeView.cs" />
     <Compile Include="EntryPoint.cs" />
     <Compile Include="FunctionUtil.cs" />
     <Compile Include="ModComponent.cs" />

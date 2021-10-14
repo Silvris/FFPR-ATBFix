@@ -28,17 +28,23 @@ namespace FFPR_ATBFix
                     if (!loadedScenes.Contains(scene))
                     {
                         Scene scn = SceneManager.GetSceneAt(sceneIndex);
-                        List<GameObject> gobs = new List<GameObject>(scn.GetRootGameObjects());
-                        foreach(GameObject go in gobs)
+                        if(scn.loadingState == Scene.LoadingState.Loaded)
                         {
-                            if(go.name == "RootObject")
+                            List<GameObject> gobs = new List<GameObject>(scn.GetRootGameObjects());
+                            foreach (GameObject go in gobs)
                             {
-                                //it's the only one for BattleMenu, figure out a better method if we fix the rest of everything
-                                BattleUIManager manager = go.GetComponent<BattleUIManager>();
-                                Canvas cvs = manager.canvas;
-                                cvs.pixelPerfect = true;
+                                if (go.name == "RootObject")
+                                {
+                                    //it's the only one for BattleMenu, figure out a better method if we fix the rest of everything
+                                    //definitely not doing any others
+                                    BattleUIManager manager = go.GetComponent<BattleUIManager>();
+                                    Canvas cvs = manager.canvas;
+                                    cvs.pixelPerfect = true;
+                                }
                             }
+                            loadedScenes.Add(scene);
                         }
+
                     }
                 }
                 else

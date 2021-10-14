@@ -23,6 +23,10 @@ namespace FFPR_ATBFix
                         if (child.gameObject != null)
                         {
                             children.Add(child.gameObject);
+                            if(child.childCount != 0)
+                            {
+                                children.AddRange(GetAllChildren(child.gameObject));
+                            }
                         }
                     }
 
