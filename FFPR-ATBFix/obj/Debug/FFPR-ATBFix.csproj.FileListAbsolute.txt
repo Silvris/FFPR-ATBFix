@@ -1,6 +1,0 @@
-C:\Users\Owner\Documents\GitHub\FFPR-ATBFix\FFPR-ATBFix\bin\Debug\FFPR-ATBFix.dll
-C:\Users\Owner\Documents\GitHub\FFPR-ATBFix\FFPR-ATBFix\bin\Debug\FFPR-ATBFix.pdb
-C:\Users\Owner\Documents\GitHub\FFPR-ATBFix\FFPR-ATBFix\obj\Debug\FFPR-ATBFix.csproj.AssemblyReference.cache
-C:\Users\Owner\Documents\GitHub\FFPR-ATBFix\FFPR-ATBFix\obj\Debug\FFPR-ATBFix.csproj.CoreCompileInputs.cache
-C:\Users\Owner\Documents\GitHub\FFPR-ATBFix\FFPR-ATBFix\obj\Debug\FFPR-ATBFix.dll
-C:\Users\Owner\Documents\GitHub\FFPR-ATBFix\FFPR-ATBFix\obj\Debug\FFPR-ATBFix.pdb
