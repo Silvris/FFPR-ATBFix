@@ -339,3 +339,6 @@ ASALocalRun/
 # BeatPulse healthcheck temp database
 healthchecksdb
 FFPR-ATBFix/bin/Debug/FFPR-ATBFix.dll
+
+[Bb]epInEx/
+*.zip
