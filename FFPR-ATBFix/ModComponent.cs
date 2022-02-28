@@ -1,4 +1,5 @@
 ﻿using BepInEx.Logging;
+using Last.Management;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,9 @@ namespace FFPR_ATBFix
     {
         public static ModComponent Instance { get; private set; }
         public static ManualLogSource Log { get; private set; }
-        [field: NonSerialized] public SceneViewer Viewer { get; private set; }
+        public static ResourceManager resourceManager { get; set; }
+        public static string Target = "Assets/GameAssets/Serial/Res/UI/Key/Battle/Prefabs/player_info_content";
+        public static bool hasRun = false;
         private Boolean _isDisabled;
         public ModComponent(IntPtr ptr) : base(ptr)
         {
@@ -23,7 +26,6 @@ namespace FFPR_ATBFix
             try
             {
                 Instance = this;
-                Viewer = new SceneViewer();
                 Log.LogMessage($"[{nameof(ModComponent)}].{nameof(Awake)}: Processed successfully.");
             }
             catch (Exception ex)
@@ -34,6 +36,36 @@ namespace FFPR_ATBFix
             }
 
         }
+        public static void ApplyFix()
+        {
+            GameObject playerInfo = resourceManager.completeAssetDic[Target].Cast<GameObject>();
+            if (playerInfo != null)
+            {
+                GameObject r1 = FunctionUtil.GetDirectChild(playerInfo, "root");
+                if (r1 != null)
+                {
+                    GameObject r2 = FunctionUtil.GetDirectChild(r1, "root");
+                    if (r2 != null)
+                    {
+                        GameObject rA = FunctionUtil.GetDirectChild(r2, "root_atb");
+                        if (rA != null)
+                        {
+                            List<GameObject> gobs = FunctionUtil.GetAllChildren(rA);
+                            foreach (GameObject gob in gobs)
+                            {
+                                if (gob.name == "gauge" || gob.name == "frame")
+                                {
+                                    Vector3 local = gob.transform.localPosition;
+                                    local.y = Mathf.Round(local.y);
+                                    gob.transform.localPosition = local;
+                                }
+                            }
+                            hasRun = true;
+                        }
+                    }
+                }
+            }
+        }
         public void Update()
         {
             try
@@ -42,7 +74,15 @@ namespace FFPR_ATBFix
                 {
                     return;
                 }
-                Viewer.Update();
+                if(resourceManager == null)
+                {
+                    resourceManager = ResourceManager.Instance;
+                    if (resourceManager == null) return;
+                }
+                if (!hasRun)
+                {
+                    if(resourceManager.completeAssetDic.ContainsKey(Target)) ApplyFix();
+                }
             }
             catch (Exception ex)
             {

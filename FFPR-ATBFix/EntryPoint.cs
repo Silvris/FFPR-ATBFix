@@ -12,7 +12,7 @@ using UnityEngine;
 
 namespace FFPR_ATBFix
 {
-    [BepInPlugin("silvris.ffpr.atb_fix", "ATB Fix", "1.0.0.0")]
+    [BepInPlugin("silvris.ffpr.atb_fix", "ATB Fix", "2.0.0.0")]
     [BepInProcess("FINAL FANTASY IV.exe")]
     [BepInProcess("FINAL FANTASY V.exe")]
     [BepInProcess("FINAL FANTASY VI.exe")]
@@ -23,9 +23,6 @@ namespace FFPR_ATBFix
         {
             Instance = this;
             Log.LogInfo("Loading...");
-            ClassInjector.RegisterTypeInIl2Cpp<Cursor_SetScale>();
-            ClassInjector.RegisterTypeInIl2Cpp<Cursor_SetParent>();
-            ClassInjector.RegisterTypeInIl2Cpp<ViewDamageEntity_CreateDamageValue>();
             ClassInjector.RegisterTypeInIl2Cpp<ModComponent>();
             String name = typeof(ModComponent).FullName;
             Log.LogInfo($"Initializing in-game singleton: {name}");

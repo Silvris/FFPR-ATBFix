@@ -9,6 +9,36 @@ namespace FFPR_ATBFix
 {
     static class FunctionUtil
     {
+        public static GameObject GetDirectChild(GameObject obj, string childName)
+        {
+
+            if (obj != null)
+            {
+                for (int i = 0; i < obj.transform.childCount; i++)
+                {
+                    Transform child = obj.transform.GetChild(i);
+                    if (child != null)
+                    {
+                        if (child.gameObject != null)
+                        {
+                            //ModComponent.Log.LogInfo(child.name);
+                            if (child.name == childName)
+                            {
+                                return child.gameObject;
+                            }
+                        }
+                    }
+
+
+                }
+            }
+            else
+            {
+                ModComponent.Log.LogWarning("Root object is null!");
+            }
+
+            return null;
+        }
         public static List<GameObject> GetAllChildren(GameObject obj)
         {
             List<GameObject> children = new List<GameObject>();
