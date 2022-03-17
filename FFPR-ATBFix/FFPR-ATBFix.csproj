@@ -133,7 +133,6 @@
     <Compile Include="FunctionUtil.cs" />
     <Compile Include="ModComponent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ResourceManager_IsAssetLoadCompleted.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

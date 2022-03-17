@@ -47,21 +47,16 @@ namespace FFPR_ATBFix
                     GameObject r2 = FunctionUtil.GetDirectChild(r1, "root");
                     if (r2 != null)
                     {
-                        GameObject rA = FunctionUtil.GetDirectChild(r2, "root_atb");
-                        if (rA != null)
+                        foreach (GameObject gob in FunctionUtil.GetAllChildren(r2))
                         {
-                            List<GameObject> gobs = FunctionUtil.GetAllChildren(rA);
-                            foreach (GameObject gob in gobs)
+                            if (gob.name == "gauge" || gob.name == "frame")
                             {
-                                if (gob.name == "gauge" || gob.name == "frame")
-                                {
-                                    Vector3 local = gob.transform.localPosition;
-                                    local.y = Mathf.Round(local.y);
-                                    gob.transform.localPosition = local;
-                                }
+                                Vector3 local = gob.transform.localPosition;
+                                local.y = Mathf.Round(local.y);
+                                gob.transform.localPosition = local;
                             }
-                            hasRun = true;
                         }
+                        hasRun = true;
                     }
                 }
             }
